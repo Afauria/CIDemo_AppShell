@@ -1,11 +1,11 @@
-package com.zwy.cidemo_app;
+package com.zwy.cidemo.app;
 
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.zwy.base.base.BaseApplication;
-import com.zwy.base.utils.Utils;
+import com.zwy.cidemo.base.base.BaseApplication;
+import com.zwy.cidemo.base.utils.Utils;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
