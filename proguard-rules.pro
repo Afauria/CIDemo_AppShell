@@ -124,8 +124,8 @@
 
 #---------------------------------业务组件实体类---------------------------------
 
--keep class com.guiying.news.data.bean.** {*;}
--keep class com.guiying.girls.data.bean.** {*;}
+-keep class com.zwy.cidemo.news.data.bean.** {*;}
+-keep class com.zwy.cidemo.girls.data.bean.** {*;}
 
 #---------------------------------第三方库及jar包-------------------------------
 
