@@ -1,11 +1,22 @@
 apply plugin: 'com.android.application'
 
+def ext = rootProject.ext
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    signingConfigs {
+        release {
+            storeFile file(ext.storeFilePath)
+            storePassword ext.storePassword
+            keyAlias ext.keyAlias
+            keyPassword ext.keyPassword
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    compileSdkVersion ext.android.compileSdkVersion
     defaultConfig {
         applicationId "com.zwy.cidemo"
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        minSdkVersion ext.android.minSdkVersion
+        targetSdkVersion ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -20,13 +31,14 @@ android {
         release {
             minifyEnabled false
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
 
 dependencies {
     apply from: 'dependencies.gradle'
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     moduleDependencies.each {
         implementation it
     }
