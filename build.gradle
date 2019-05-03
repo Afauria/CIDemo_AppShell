@@ -1,13 +1,16 @@
 apply plugin: 'com.android.application'
+apply from: 'dependencies.gradle'
 
+def keystore = ext
 def ext = rootProject.ext
+
 android {
     signingConfigs {
         release {
-            storeFile file(ext.storeFilePath)
-            storePassword ext.storePassword
-            keyAlias ext.keyAlias
-            keyPassword ext.keyPassword
+            storeFile file(keystore.storeFilePath)
+            storePassword keystore.storePassword
+            keyAlias keystore.keyAlias
+            keyPassword keystore.keyPassword
             v1SigningEnabled true
             v2SigningEnabled true
         }
@@ -37,7 +40,6 @@ android {
 }
 
 dependencies {
-    apply from: 'dependencies.gradle'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     moduleDependencies.each {
         implementation it
