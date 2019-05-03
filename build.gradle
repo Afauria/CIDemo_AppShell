@@ -3,6 +3,9 @@ apply from: 'dependencies.gradle'
 
 def keystore = ext
 def ext = rootProject.ext
+static def releaseTime() {
+    return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+8"))
+}
 
 android {
     signingConfigs {
@@ -36,6 +39,13 @@ android {
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+    }
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                //这里修改apk文件名
+                outputFileName = "CIDemo_App-${variant.name}-v${variant.versionName}-${releaseTime()}.apk"
+            }
     }
 }
 
